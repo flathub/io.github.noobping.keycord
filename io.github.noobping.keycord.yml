@@ -32,6 +32,19 @@ modules:
         commands:
           - cd c++ && autoreconf -fi
 
+  - name: pcsc-lite
+    buildsystem: meson
+    config-opts:
+      - -Dlibsystemd=false
+      - -Dpolkit=false
+      - -Dipcdir=/run/pcscd
+
+    sources:
+      - type: git
+        url: https://github.com/LudovicRousseau/PCSC.git
+        tag: 2.3.3
+        commit: 3ef55e02979de6834015b380c1d21671eeb4e9f5
+
   - name: git
     buildsystem: autotools
     no-autogen: true
@@ -79,5 +92,5 @@ modules:
     sources:
       - type: git
         url: https://github.com/noobping/keycord.git
-        commit: 5451ab3d34ca83072c9736ac2519bfdcb23720ff
+        commit: 2d07d9b7cf264f57dd25e68797e806763b417867
       - cargo-sources.yml
