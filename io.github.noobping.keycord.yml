@@ -81,7 +81,7 @@ modules:
         BINDGEN_EXTRA_CLANG_ARGS: -resource-dir=/usr/lib/sdk/llvm20/lib/clang/20
 
     build-commands:
-      - sed -i '/\[target.\x27cfg(target_os = "windows")\x27.build-dependencies\]/,/^$/d' Cargo.toml
+      - sed -i '/\[target.\x27cfg(target_os = "windows")\x27.*ependencies\]/,/^$/d' Cargo.toml
       - cargo --offline build --release --features flatpak
       - install -Dm0755 target/release/keycord /app/bin/keycord
       - install -Dm0644 data/scalable/apps/${FLATPAK_ID}.svg /app/share/icons/hicolor/scalable/apps/${FLATPAK_ID}.svg
@@ -105,5 +105,5 @@ modules:
     sources:
       - type: git
         url: https://github.com/noobping/keycord.git
-        commit: 3e4ef29e13091211d7c191640713bff0ae738da8
+        commit: 45eee64ac9627b446ce5081c8c4d97ed12754ace
       - cargo-sources.yml
