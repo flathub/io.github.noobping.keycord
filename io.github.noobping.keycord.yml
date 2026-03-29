@@ -45,6 +45,31 @@ modules:
         tag: 2.3.3
         commit: 3ef55e02979de6834015b380c1d21671eeb4e9f5
 
+  - name: libcbor
+    buildsystem: cmake-ninja
+    config-opts:
+      - -DBUILD_TESTING=OFF
+    sources:
+      - type: git
+        url: https://github.com/PJK/libcbor.git
+        tag: v0.13.0
+        commit: 9826a4315116a588f7416912db9da6fcecd8da11
+
+  - name: libfido2
+    buildsystem: cmake-ninja
+    config-opts:
+      - -DBUILD_EXAMPLES=OFF
+      - -DBUILD_MANPAGES=OFF
+      - -DBUILD_STATIC_LIBS=OFF
+      - -DBUILD_TOOLS=OFF
+      - -DNFC_LINUX=OFF
+      - -DUSE_HIDAPI=ON
+    sources:
+      - type: git
+        url: https://github.com/Yubico/libfido2.git
+        tag: 1.16.0
+        commit: 7dc6b3c52d441c64a4235ae276a23865243395a1
+
   - name: git
     buildsystem: autotools
     no-autogen: true
@@ -105,5 +130,5 @@ modules:
     sources:
       - type: git
         url: https://github.com/noobping/keycord.git
-        commit: ff014bcc24f5b83f4d5af807cfdf1b8b15a342b6
+        commit: c40c5019ff281315d6ed58574b10a2db4e1c86b8
       - cargo-sources.yml
