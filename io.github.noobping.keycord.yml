@@ -107,7 +107,7 @@ modules:
 
     build-commands:
       - sed -i '/\[target.\x27cfg(target_os = "windows")\x27.*ependencies\]/,/^$/d' Cargo.toml
-      - cargo --offline build --release --features flatpak,fido
+      - cargo --offline build --release --features flatpak,fidokey
       - install -Dm0755 target/release/keycord /app/bin/keycord
       - install -Dm0644 data/scalable/apps/${FLATPAK_ID}.svg /app/share/icons/hicolor/scalable/apps/${FLATPAK_ID}.svg
       - install -Dm0644 keycord-search-provider.ini /app/share/gnome-shell/search-providers/${FLATPAK_ID}.search-provider.ini
@@ -130,5 +130,5 @@ modules:
     sources:
       - type: git
         url: https://github.com/noobping/keycord.git
-        commit: 986b080914cf3f88bb9043aded80ca1cdb402070
+        commit: 72cb3a7de3a888188ed7a9ad45beb7efa96f086b
       - cargo-sources.yml
