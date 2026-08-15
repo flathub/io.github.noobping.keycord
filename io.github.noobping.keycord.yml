@@ -7,6 +7,9 @@ sdk-extensions:
   - org.freedesktop.Sdk.Extension.rust-stable
   - org.freedesktop.Sdk.Extension.llvm20
 
+build-options:
+  append-path: /usr/lib/sdk/rust-stable/bin
+
 command: keycord
 
 finish-args:
@@ -79,8 +82,8 @@ modules:
 
     sources:
       - type: archive
-        url: https://cdn.kernel.org/pub/software/scm/git/git-2.54.0.tar.xz
-        sha256: f689162364c10de79ef89aa8dbf48731eb057e34edbbd20aca510ce0154681a3
+        url: https://cdn.kernel.org/pub/software/scm/git/git-2.55.0.tar.xz
+        sha256: 457fdb04dc8728e007d4688695e6912e6f680727920f2a40bf11eacc17505357
         x-checker-data:
           type: anitya
           project-id: 5350
@@ -93,7 +96,6 @@ modules:
     build-options:
       prepend-path: /app/bin:/usr/lib/sdk/llvm20/bin
       prepend-ld-library-path: /app/lib:/usr/lib/sdk/llvm20/lib
-      append-path: /usr/lib/sdk/rust-stable/bin
       env:
         CLANG_PATH: /usr/lib/sdk/llvm20/bin/clang
         CARGO_HOME: /run/build/keycord/cargo
@@ -101,7 +103,8 @@ modules:
         BINDGEN_EXTRA_CLANG_ARGS: -resource-dir=/usr/lib/sdk/llvm20/lib/clang/20
 
     build-commands:
-      - sed -i '/\[target.\x27cfg(target_os = "windows")\x27.*ependencies\]/,/^$/d' Cargo.toml
+      - sed -i '/\[target.\x27cfg(target_os = "windows")\x27.*ependencies\]/,/^$/d'
+        Cargo.toml
       - cargo --offline build --release --features flatpak
       - install -Dm0755 target/release/keycord /app/bin/keycord
       - install -Dm0644 data/scalable/apps/${FLATPAK_ID}.svg /app/share/icons/hicolor/scalable/apps/${FLATPAK_ID}.svg
