@@ -7,6 +7,9 @@ sdk-extensions:
   - org.freedesktop.Sdk.Extension.rust-stable
   - org.freedesktop.Sdk.Extension.llvm20
 
+build-options:
+  append-path: /usr/lib/sdk/rust-stable/bin
+
 command: keycord
 
 finish-args:
