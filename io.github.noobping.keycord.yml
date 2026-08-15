@@ -105,9 +105,9 @@ modules:
       - cargo --offline build --release --features flatpak
       - install -Dm0755 target/release/keycord /app/bin/keycord
       - install -Dm0644 data/scalable/apps/${FLATPAK_ID}.svg /app/share/icons/hicolor/scalable/apps/${FLATPAK_ID}.svg
-      - install -Dm0644 keycord-search-provider.ini /app/share/gnome-shell/search-providers/${FLATPAK_ID}.search-provider.ini
-      - install -Dm0644 keycord-search-provider.service /app/share/dbus-1/services/${FLATPAK_ID}.SearchProvider.service
-      - install -Dm0644 data/gschema.xml /app/share/glib-2.0/schemas/${FLATPAK_ID}.gschema.xml
+      - install -Dm0644 data/keycord-search-provider.ini /app/share/gnome-shell/search-providers/${FLATPAK_ID}.search-provider.ini
+      - install -Dm0644 data/keycord-search-provider.service /app/share/dbus-1/services/${FLATPAK_ID}.SearchProvider.service
+      - install -Dm0644 data/${FLATPAK_ID}.gschema.xml /app/share/glib-2.0/schemas/${FLATPAK_ID}.gschema.xml
       - glib-compile-schemas /app/share/glib-2.0/schemas
       - mkdir mo
       - |
@@ -119,11 +119,10 @@ modules:
         done
       - itstool -j data/metainfo.xml -o data/${FLATPAK_ID}.metainfo.xml mo/*.mo
       - install -Dm0644 data/${FLATPAK_ID}.metainfo.xml /app/share/metainfo/${FLATPAK_ID}.metainfo.xml
-      - msgfmt --desktop --template=keycord.desktop -d po -o ${FLATPAK_ID}.keycord.desktop
-      - install -Dm0644 ${FLATPAK_ID}.keycord.desktop /app/share/applications/${FLATPAK_ID}.desktop
+      - install -Dm0644 data/keycord.desktop /app/share/applications/${FLATPAK_ID}.desktop
 
     sources:
       - type: git
         url: https://github.com/noobping/keycord.git
-        commit: 8fccfd104574bd520c76636eef4fead1cd840a8d
+        commit: c7926da133771076ecafd231fd823e3fd584d5c5
       - cargo-sources.yml
