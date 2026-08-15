@@ -96,7 +96,6 @@ modules:
     build-options:
       prepend-path: /app/bin:/usr/lib/sdk/llvm20/bin
       prepend-ld-library-path: /app/lib:/usr/lib/sdk/llvm20/lib
-      append-path: /usr/lib/sdk/rust-stable/bin
       env:
         CLANG_PATH: /usr/lib/sdk/llvm20/bin/clang
         CARGO_HOME: /run/build/keycord/cargo
