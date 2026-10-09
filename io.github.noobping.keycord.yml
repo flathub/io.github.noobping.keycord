@@ -105,7 +105,7 @@ modules:
     build-commands:
       - sed -i '/\[target.\x27cfg(target_os = "windows")\x27.*ependencies\]/,/^$/d'
         Cargo.toml
-      - cargo --offline build --release --features flatpak,passkey
+      - cargo --offline build --release --features flatpak
       - install -Dm0755 target/release/keycord /app/bin/keycord
       - install -Dm0644 data/scalable/apps/${FLATPAK_ID}.svg /app/share/icons/hicolor/scalable/apps/${FLATPAK_ID}.svg
       - install -Dm0644 data/keycord-search-provider.ini /app/share/gnome-shell/search-providers/${FLATPAK_ID}.search-provider.ini
