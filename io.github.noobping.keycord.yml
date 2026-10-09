@@ -1,6 +1,6 @@
 id: io.github.noobping.keycord
 runtime: org.gnome.Platform
-runtime-version: '50'
+runtime-version: '51'
 sdk: org.gnome.Sdk
 
 sdk-extensions:
@@ -105,7 +105,7 @@ modules:
     build-commands:
       - sed -i '/\[target.\x27cfg(target_os = "windows")\x27.*ependencies\]/,/^$/d'
         Cargo.toml
-      - cargo --offline build --release --features flatpak
+      - cargo --offline build --release --features flatpak,passkey
       - install -Dm0755 target/release/keycord /app/bin/keycord
       - install -Dm0644 data/scalable/apps/${FLATPAK_ID}.svg /app/share/icons/hicolor/scalable/apps/${FLATPAK_ID}.svg
       - install -Dm0644 data/keycord-search-provider.ini /app/share/gnome-shell/search-providers/${FLATPAK_ID}.search-provider.ini
@@ -127,5 +127,5 @@ modules:
     sources:
       - type: git
         url: https://github.com/noobping/keycord.git
-        commit: 924c9de92b526e85d15299975fb427754d65880f
+        commit: ba67fb2cf2846b8e5a0ab6bf1b5e5aed3983fabd
       - cargo-sources.yml
