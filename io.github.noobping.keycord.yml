@@ -97,6 +97,7 @@ modules:
       prepend-path: /app/bin:/usr/lib/sdk/llvm22/bin
       prepend-ld-library-path: /app/lib:/usr/lib/sdk/llvm22/lib
       env:
+        AWS_LC_SYS_CMAKE_BUILDER: '1'
         CLANG_PATH: /usr/lib/sdk/llvm22/bin/clang
         CARGO_HOME: /run/build/keycord/cargo
         LIBCLANG_PATH: /usr/lib/sdk/llvm22/lib
