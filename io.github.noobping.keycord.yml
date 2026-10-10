@@ -5,7 +5,7 @@ sdk: org.gnome.Sdk
 
 sdk-extensions:
   - org.freedesktop.Sdk.Extension.rust-stable
-  - org.freedesktop.Sdk.Extension.llvm20
+  - org.freedesktop.Sdk.Extension.llvm22
 
 build-options:
   append-path: /usr/lib/sdk/rust-stable/bin
@@ -29,8 +29,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/capnproto/capnproto.git
-        tag: v1.3.0
-        commit: 7dbb95989721016f8b590245ec7528c6ff03d1fe
+        tag: v1.5.0
+        commit: 373e61ec89e2359f1c362e9b2eadc552f4779306
       - type: shell
         commands:
           - cd c++ && autoreconf -fi
@@ -45,8 +45,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/LudovicRousseau/PCSC.git
-        tag: 2.3.3
-        commit: 3ef55e02979de6834015b380c1d21671eeb4e9f5
+        tag: 2.5.2
+        commit: 6cadd8152f3cfdb79131a65843d9b85f01f0ae51
 
   - name: libcbor
     buildsystem: cmake-ninja
@@ -55,8 +55,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/PJK/libcbor.git
-        tag: v0.13.0
-        commit: 9826a4315116a588f7416912db9da6fcecd8da11
+        tag: v0.14.0
+        commit: 6730c20ab487c0b4dc5fb3fea918937085355bac
 
   - name: libfido2
     buildsystem: cmake-ninja
@@ -70,8 +70,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/Yubico/libfido2.git
-        tag: 1.16.0
-        commit: 7dc6b3c52d441c64a4235ae276a23865243395a1
+        tag: 1.17.0
+        commit: b974e7cf2ee7392134cc12c08b76a068cf250dd8
 
   - name: git
     buildsystem: autotools
@@ -94,13 +94,13 @@ modules:
     buildsystem: simple
 
     build-options:
-      prepend-path: /app/bin:/usr/lib/sdk/llvm20/bin
-      prepend-ld-library-path: /app/lib:/usr/lib/sdk/llvm20/lib
+      prepend-path: /app/bin:/usr/lib/sdk/llvm22/bin
+      prepend-ld-library-path: /app/lib:/usr/lib/sdk/llvm22/lib
       env:
-        CLANG_PATH: /usr/lib/sdk/llvm20/bin/clang
+        CLANG_PATH: /usr/lib/sdk/llvm22/bin/clang
         CARGO_HOME: /run/build/keycord/cargo
-        LIBCLANG_PATH: /usr/lib/sdk/llvm20/lib
-        BINDGEN_EXTRA_CLANG_ARGS: -resource-dir=/usr/lib/sdk/llvm20/lib/clang/20
+        LIBCLANG_PATH: /usr/lib/sdk/llvm22/lib
+        BINDGEN_EXTRA_CLANG_ARGS: -resource-dir=/usr/lib/sdk/llvm22/lib/clang/22
 
     build-commands:
       - sed -i '/\[target.\x27cfg(target_os = "windows")\x27.*ependencies\]/,/^$/d'
